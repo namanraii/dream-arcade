@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dreamarcade"
+version = "0.1.0"
+description = "Action-conditioned diffusion world model of Pong that plays in the browser."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "namanrai" }]
+dependencies = [
+  "torch>=2.2",
+  "numpy>=1.26",
+  "pillow>=10",
+  "tqdm>=4.66",
+  "hydra-core>=1.3",
+  "omegaconf>=2.3",
+  "matplotlib>=3.8",
+  "imageio>=2.34",
+  "scikit-image>=0.22",
+  "onnx>=1.16",
+  "onnxruntime>=1.17",
+  "gymnasium>=0.29",
+]
+
+[project.optional-dependencies]
+atari = ["ale-py>=0.9"]
+metrics = ["lpips>=0.1.4", "torchmetrics>=1.3"]
+track = ["wandb>=0.16"]
+play = ["pygame>=2.5"]
+expert = ["stable-baselines3>=2.3"]
+dev = ["pytest>=8", "ruff>=0.6"]
+all = [
+  "ale-py>=0.9",
+  "lpips>=0.1.4",
+  "torchmetrics>=1.3",
+  "wandb>=0.16",
+  "pygame>=2.5",
+  "pytest>=8",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+dreamarcade = "dreamarcade.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
