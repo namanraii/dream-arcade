@@ -6,6 +6,44 @@ The browser runs the denoiser with ONNX Runtime Web (WebGPU, then WASM). The Eul
 
 This repository is the full system from the plan: data, a one-step baseline, an EDM diffusion model, a reward and termination head, evaluation, dream PPO, ONNX export, and the arcade UI. Training a model that actually stays coherent for 100 steps is a Kaggle job. The numbers in `RESULTS.md` stay empty until that job writes them.
 
+## Architecture
+
+Real games only produce the training tape and the lab's reference frames. Play generates the next 64×64 frame from the last four frames and the action. The ONNX file is the denoiser. The Euler steps stay in the browser, so the step slider does not need a new export.
+
+```mermaid
+flowchart TB
+  env["Pong or Breakout<br/>64 by 64 RGB, six actions"]
+  collect["Collect<br/>expert, random, and sloppy play"]
+  shards["Episode shards"]
+  v1["v1 U-Net<br/>one-step baseline"]
+  v2["v2 EDM denoiser<br/>history, action, noise level"]
+  reward["Reward and done head"]
+  ppo["PPO trained inside the dream"]
+  eval["Eval<br/>drift, control, physics"]
+  onnx["ONNX<br/>denoiser, reward, policy"]
+  euler["Euler sampler<br/>TypeScript"]
+  play["Play"]
+  lab["Lab, beside a real tape"]
+  agent["Agent watch"]
+
+  env --> collect --> shards
+  shards --> v1
+  shards --> v2
+  shards --> reward
+  shards --> lab
+  v1 --> eval
+  v2 --> eval
+  v2 --> ppo
+  reward --> ppo
+  v2 --> onnx
+  reward --> onnx
+  ppo --> onnx
+  onnx --> euler
+  euler --> play
+  euler --> lab
+  euler --> agent
+```
+
 ## What is implemented
 
 | Piece | Command | What "done" means here |
