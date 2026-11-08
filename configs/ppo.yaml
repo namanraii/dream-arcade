@@ -1,0 +1,31 @@
+defaults:
+  - data: pong
+  - model: v2
+  - reward: default
+  - _self_
+
+seed: 0
+device: auto
+data_dir: data/pong
+out_dir: outputs/ppo
+v1_checkpoint: outputs/v1/latest.pt
+v2_checkpoint: outputs/v2/latest.pt
+reward_checkpoint: outputs/reward/latest.pt
+dream_model: v2
+sampler_steps: 1
+dream_episode_steps: 64
+rollout_steps: 128
+updates: 50
+epochs: 4
+minibatch: 64
+lr: 0.00025
+clip: 0.2
+ent_coef: 0.01
+vf_coef: 0.5
+gamma: 0.99
+gae_lambda: 0.95
+eval_every: 10
+eval_episodes: 20
+wandb: false
+project: dream-arcade
+run_name: ppo-dream-v2-seed0
