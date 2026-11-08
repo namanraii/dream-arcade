@@ -1,0 +1,16 @@
+kind: v2
+base_channels: 16
+channel_mult:
+  - 1
+  - 2
+attn_resolutions:
+  - 32
+cond_dim: 64
+residual: true
+sigma_data: 0.5
+p_mean: -1.2
+p_std: 1.2
+sigma_min: 0.002
+sigma_max: 80.0
+rho: 7.0
+sampler_steps: 2
