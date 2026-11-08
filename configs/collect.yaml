@@ -1,0 +1,9 @@
+defaults:
+  - data: pong
+  - _self_
+
+seed: 0
+episodes: 400
+episode_length: 256
+out_dir: data/pong
+expert_path: null

@@ -1,0 +1,10 @@
+defaults:
+  - data: pong
+  - _self_
+
+# About 300k frames. Use this for the training runs after the 100k pipeline test.
+seed: 0
+episodes: 1200
+episode_length: 256
+out_dir: data/pong-v1
+expert_path: null
