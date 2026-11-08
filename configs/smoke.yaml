@@ -1,0 +1,43 @@
+defaults:
+  - data: pong
+  - model: tiny
+  - reward: tiny
+  - _self_
+
+seed: 0
+device: cpu
+data_dir: outputs/smoke/data
+out_dir: outputs/smoke/expert
+v1_out: outputs/smoke/v1
+v2_out: outputs/smoke/v2
+reward_out: outputs/smoke/reward
+expert_out: outputs/smoke/expert
+episodes: 4
+episode_length: 32
+steps: 3
+batch_size: 4
+lr: 0.001
+weight_decay: 0.0
+warmup: 0
+grad_clip: 1.0
+ema_decay: 0.9
+mixed_precision: false
+log_every: 1
+save_every: 1
+wandb: false
+project: dream-arcade
+run_name: smoke
+resume: null
+pixel_alpha: 4.0
+context_noise: 0.0
+history_noise: 0.0
+perceptual_weight: 0.0
+scheduled_sampling: false
+ss_warmup: 0
+expert_path: null
+updates: 1
+rollout_steps: 16
+epochs: 1
+minibatch: 16
+eval_episodes: 1
+episode_length_expert: 32

@@ -1,0 +1,20 @@
+defaults:
+  - data: pong
+  - model: tiny
+  - reward: tiny
+  - _self_
+
+seed: 0
+device: auto
+out_dir: outputs/expert
+episode_length: 256
+rollout_steps: 256
+updates: 30
+epochs: 4
+minibatch: 64
+lr: 0.00025
+eval_episodes: 5
+wandb: false
+project: dream-arcade
+run_name: expert-pong
+data_dir: data/pong

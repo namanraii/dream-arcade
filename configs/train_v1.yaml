@@ -1,0 +1,42 @@
+defaults:
+  - data: pong
+  - model: v1
+  - reward: default
+  - _self_
+
+seed: 0
+device: auto
+data_dir: data/pong
+out_dir: outputs/v1
+steps: 20000
+batch_size: 32
+lr: 0.0002
+weight_decay: 0.01
+warmup: 500
+grad_clip: 1.0
+ema_decay: 0.999
+mixed_precision: true
+log_every: 50
+save_every: 200
+wandb: false
+project: dream-arcade
+run_name: v1-L4-aug0.05-seed0
+resume: null
+pixel_alpha: 4.0
+context_noise: 0.05
+perceptual_weight: 0.1
+scheduled_sampling: true
+ss_warmup: 2000
+history_noise: 0.0
+episodes: 8
+episode_length: 128
+expert_path: null
+updates: 1
+rollout_steps: 32
+epochs: 2
+minibatch: 16
+eval_episodes: 2
+v1_out: outputs/v1
+v2_out: outputs/v2
+reward_out: outputs/reward
+expert_out: outputs/expert

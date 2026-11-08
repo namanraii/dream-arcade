@@ -1,0 +1,30 @@
+defaults:
+  - data: pong
+  - model: v2
+  - reward: default
+  - _self_
+
+seed: 0
+device: auto
+data_dir: data/pong
+out_dir: outputs/reward
+steps: 8000
+batch_size: 64
+lr: 0.0002
+weight_decay: 0.01
+warmup: 200
+grad_clip: 1.0
+ema_decay: 0.999
+mixed_precision: false
+log_every: 50
+save_every: 200
+wandb: false
+project: dream-arcade
+run_name: reward-L4-seed0
+resume: null
+pixel_alpha: 4.0
+history_noise: 0.0
+context_noise: 0.0
+perceptual_weight: 0.0
+scheduled_sampling: false
+ss_warmup: 0
