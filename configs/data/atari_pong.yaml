@@ -1,0 +1,5 @@
+name: ALE/Pong-v5
+history: 4
+score_boost: 8.0
+contact_boost: 4.0
+physics: pong

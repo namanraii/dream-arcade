@@ -1,0 +1,5 @@
+name: original_breakout
+history: 4
+score_boost: 8.0
+contact_boost: 4.0
+physics: breakout
