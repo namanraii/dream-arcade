@@ -1,0 +1,12 @@
+defaults:
+  - data: pong
+  - model: v2
+  - reward: default
+  - _self_
+
+denoiser_checkpoint: outputs/v2/latest.pt
+reward_checkpoint: outputs/reward/latest.pt
+policy_checkpoint: outputs/ppo/policy.pt
+out_dir: web/public/models
+onnx_path: web/public/models/denoiser.onnx
+seed: 0

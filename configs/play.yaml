@@ -1,0 +1,12 @@
+defaults:
+  - data: pong
+  - model: v2
+  - reward: default
+  - _self_
+
+seed: 0
+device: auto
+checkpoint: outputs/v2/latest.pt
+steps: 200
+sampler_steps: 3
+out_dir: outputs/play
