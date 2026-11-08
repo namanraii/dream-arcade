@@ -139,16 +139,17 @@ class OriginalPong:
             self._bounce(60, self.agent_y, direction=-1)
         elif self.vx < 0 and self._hits(2, self.opp_y):
             self._bounce(2, self.opp_y, direction=1)
+        # Agent paddle is on the right: exiting left is the agent's point.
         if self.ball_x < -1:
-            self.score_opp += 1
+            self.score_agent += 1
             self.serve_dir = 1.0
             self._park_ball()
-            return -1.0
+            return 1.0
         if self.ball_x > SIZE:
-            self.score_agent += 1
+            self.score_opp += 1
             self.serve_dir = -1.0
             self._park_ball()
-            return 1.0
+            return -1.0
         return 0.0
 
     def _bounce(self, px: float, py: float, direction: int) -> None:

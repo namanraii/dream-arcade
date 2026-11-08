@@ -70,3 +70,36 @@ def test_detector_ignores_the_paddles_as_balls():
     assert len(blobs) == 1
     _cy, cx, _area = blobs[0]
     assert 6 < cx < 58
+
+
+def test_agent_scores_when_the_ball_passes_the_opponent():
+    """The agent paddle is on the right, so a ball past the left edge is +1."""
+    env = OriginalPong(seed=0, max_steps=20)
+    env.reset()
+    env.waiting = False
+    env.ball_x = 0.0
+    env.ball_y = 30.0
+    env.vx = -2.0
+    env.vy = 0.0
+    _frame, reward, _done, _info = env.step(0)
+    assert reward == 1.0
+    assert env.score_agent == 1
+    assert env.score_opp == 0
+    assert env.waiting
+
+
+def test_agent_is_penalized_when_missing_the_ball():
+    """A ball past the right edge means the agent missed and the opponent scores."""
+    env = OriginalPong(seed=0, max_steps=20)
+    env.reset()
+    env.waiting = False
+    env.agent_y = 1.0
+    env.ball_x = 63.0
+    env.ball_y = 50.0
+    env.vx = 2.0
+    env.vy = 0.0
+    _frame, reward, _done, _info = env.step(0)
+    assert reward == -1.0
+    assert env.score_agent == 0
+    assert env.score_opp == 1
+    assert env.waiting
